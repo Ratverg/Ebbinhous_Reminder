@@ -1,0 +1,8 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  @apply bg-[#DEE4EC] text-[#243850]; /* фон, цвет текста и сброс стандартных отступов */
+  font-family: sans-serif; /* глобальный шрифт */
+}
