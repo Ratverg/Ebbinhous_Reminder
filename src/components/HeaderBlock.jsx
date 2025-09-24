@@ -1,30 +1,33 @@
 import LogoWithText from "./LogoWithText";
 import LogoWithoutText from "./LogoWithoutText";
 import ButtonType01 from "./ButtonType01"
+import BurgerMenu from "./BurgerMenu";
+import UserLogo from "./UserLogo";
 
 function HeaderBlock(){
     return(
         <div className="
             bg-[#ffffff] text-[#243850] border-0 
             text-2xl font-semibold 
-            md:mx-0 lg:mx-32 mt-8 px-8 
+            md:mx-0 lg:mx-32 mt-1 md:mt-8 px-4 md:px-8 
             rounded-t-[2rem] 
-            h-[7.5rem]
-            flex flex-row  
-            items-center justify-between gap-x-4 
+            h-[5rem]
+            md:h-[7.5rem]
+            flex  
+            items-center justify-between gap-x-4
         ">
-            <div className="flex items-center shrink-0">
-                <LogoWithText className="hidden md:block" />
-                <LogoWithoutText className="block md:hidden" />
+            <LogoWithText />
+            {/* Navigation container with User logo */}
+            <div className="flex flex-row items-center gap-[1rem] relative">
+                <div className="hidden md:flex flex-row gap-6 items-center">
+                    <ButtonType01 text="Home" active={true}/>
+                    <ButtonType01 text="About method" active={false} />
+                    <ButtonType01 text="Sing Up" active={false} />
+                </div>  
+                <UserLogo />
+                <BurgerMenu />
             </div>
-            <div className="hidden md:flex flex-row gap-6">
-                <ButtonType01 text="Home" active={true}/>
-                <ButtonType01 text="About method" active={false} />
-                <ButtonType01 text="Sing Up" active={false} />
-            </div>
-            <div className="md:hidden">
-                <button className="text-2xl">☰</button>
-            </div>
+
         </div>
     )
 }

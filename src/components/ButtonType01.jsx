@@ -1,9 +1,11 @@
 import clsx from "clsx";
 
-function ButtonType01({text = "btn", active = false}){
+function ButtonType01({text = "btn", active = false, onClick}){
     return(
-        <button className={clsx(
-            "shrink-0",
+        <button
+        onClick={onClick}
+        className={clsx(
+            "h-[2rem]",
             "relative duration-500",
             "after:absolute after:bottom-1 after:left-1/2 after:h-[2px] after:bg-[#243850] after:translate-x-[-50%]",
             "after:transition-all after:duration-300 ",

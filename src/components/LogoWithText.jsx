@@ -3,7 +3,10 @@ function LogoWithText({className=''}){
         <img
             src="/src/assets/images/logo-with-text.png"
             alt="logo"
-            className={`h-[6rem] w-auto shrink-0 ${className}`}
+            className={`
+                h-[4rem] md:h-[6rem] w-auto shrink-0
+                ${className}
+            `}
         />
 
     )
