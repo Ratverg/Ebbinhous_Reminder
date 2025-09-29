@@ -1,4 +1,4 @@
-function UserLogo({path = "/src/assets/user-logos/user-000001.jpg"}){
+function UserLogo({path = "/src/assets/user-images/user-000001.jpg"}){
     return (
         <img
             src={path}

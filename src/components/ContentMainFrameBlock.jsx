@@ -1,6 +1,16 @@
 import ContentSection01 from "./ContentSection01";
 import ContentSection02 from "./ContentSection02";
+import ContentSection03 from "./ContentSection03";
+import ContentSection04 from "./ContentSection04";
+import ContentSection05 from "./ContentSection05";
 
+function Title({text}){
+    return (
+            <div className="text-base font-semibold md:text-2xl">
+                <h1>{text}</h1>
+            </div>
+    )
+}
 
 function ContentMainFrameBlock(){
     return(
@@ -14,18 +24,18 @@ function ContentMainFrameBlock(){
             flex flex-col gap-4
             md:gap-8
         "> 
-            {/* title */}
-            <div className="text-base font-semibold md:text-2xl">
-                <h1>Science behind the scene</h1>
-            </div>
+
+            <Title text={"Science behind the scene"} />
             <ContentSection01 />
 
-            {/* title */}
-            <div className="text-base font-semibold md:text-2xl">
-                <h1>Key features</h1>
-            </div>
+            <Title text={"Key features"} />
             <ContentSection02 />
-            
+
+            <Title text={"How it works"} />
+            <ContentSection03 />
+
+            <Title text={"Users reviews"} />
+            <ContentSection05 />
         </div>
     )
 }
