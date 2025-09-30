@@ -9,7 +9,7 @@ function LogoLink({logoImage, logoAlt, logoHref}){
                 src={logoImage} alt={logoAlt}
                 className="
                     h-5
-                    md:h-8
+                    md:h-6
                     hover:scale-110
                     transition-all duration-200
                 "
@@ -31,8 +31,8 @@ function FooterBlock(){
             mx-0 md:mx-5 lg:mx-32 mb-1 md:mb-8 px-4 md:px-8 
             rounded-b-[2rem]
             md:rounded-b[1rem]
-            h-[5rem]
-            md:h-[7.5rem]
+            h-[3rem]
+            md:h-[4rem]
             flex flex-row justify-between
         ">
             <div className="flex flex-row justify-center items-center gap-2 md:gap-8">

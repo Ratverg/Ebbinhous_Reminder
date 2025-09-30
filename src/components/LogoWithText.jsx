@@ -4,7 +4,7 @@ function LogoWithText({className=''}){
             src="/src/assets/images/logo-with-text.png"
             alt="logo"
             className={`
-                h-[4rem] md:h-[6rem] w-auto shrink-0
+                h-[3.5rem] md:h-[5rem] w-auto shrink-0
                 ${className}
             `}
         />

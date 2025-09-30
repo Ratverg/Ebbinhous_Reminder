@@ -12,8 +12,8 @@ function HeaderBlock(){
             mx-0 md:mx-5 lg:mx-32 mt-1 md:mt-8 px-4 md:px-8 
             rounded-t-[2rem]
             md:rounded-t[1rem]
-            h-[5rem]
-            md:h-[7.5rem]
+            h-[4rem]
+            md:h-[6rem]
             flex  
             items-center justify-between gap-x-4
         ">

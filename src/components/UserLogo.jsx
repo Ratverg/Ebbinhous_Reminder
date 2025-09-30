@@ -4,7 +4,7 @@ function UserLogo({path = "/src/assets/user-images/user-000001.jpg"}){
             src={path}
             alt="user-image"
             className="
-                rounded-full h-[4rem] md:h-[6rem] shrink-0
+                rounded-full h-[3.5rem] md:h-[5rem] shrink-0
             "
         />
     )
