@@ -54,12 +54,13 @@ function HashTagButton({text = "btn", color = "#1f6e93" }){
 function ProgressBar({ready = 0, total = 4}){
     const barsArray = Array.from({length: total}, (_, i) => i);
     return(
-        <div className="flex flex-row w-50 gap-1">
+        <div className="flex flex-row w-50 gap-1 md:gap-1">
             {barsArray.map((element, i)=>
                 <div
                 key={i}
                 className={clsx(
-                    "w-8 h-1.5 rounded-full",
+                    "w-3 h-1.5 rounded-full",
+                    "md:w-8 md:h-1.5",
                     (ready <= i)
                     ? "bg-[#d3dce0]"
                     : "bg-[#2EA5DC]"
@@ -108,7 +109,7 @@ function UserNotification({notification}){
 // -------Notification block-------
 function NotificationBlock({title = "", actionButtons, notificationList}){
     return(
-        <ContentWrapper className={"flex flex-col gap-2 px-4 py-4 rounded-lg w-full items-start"}>
+        <ContentWrapper className={"flex flex-col gap-2 px-[0.5rem] py-4 rounded-lg w-full items-start"}>
 
             {/* block title */}
             <p className="font-semibold text-lg">{title}</p>
@@ -165,7 +166,7 @@ function TaskManagerSection(){
 
     return (
         <ContentWrapper 
-            className={"flex flex-col gap-2 rounded-sm items-start"}
+            className={"flex flex-col gap-2 rounded-lg items-start px-[0.5rem] flex-1 w-full"}
         >
             {/* Main title */}
             <p className="font-semibold text-xl">Notification list</p>
@@ -182,8 +183,8 @@ function TaskManagerSection(){
             <NotificationBlock
                 title="Active notifications"
                 actionButtons={[
-                    {text: "Add notification", color: "#48BB78"},
-                    {text: "Delete notification", color: "#BB4848"},
+                    {text: "Add", color: "#48BB78"},
+                    {text: "Delete", color: "#BB4848"},
                 ]}
                 notificationList={notificationList}
             />
@@ -192,8 +193,8 @@ function TaskManagerSection(){
             <NotificationBlock
                 title="Compleated notifications"
                 actionButtons={[
-                    {text: "Add notification", color: "#48BB78"},
-                    {text: "Delete notification", color: "#BB4848"},
+                    {text: "Add", color: "#48BB78"},
+                    {text: "Delete", color: "#BB4848"},
                 ]}
                 notificationList={notificationList}
             />

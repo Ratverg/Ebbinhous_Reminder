@@ -1,5 +1,6 @@
 
 import TaskManagerSection from "./TaskManagerSection";
+import CalendarSection from "./CalendarSection";
 
 function Title({text}){
     return (
@@ -18,11 +19,11 @@ function ContentMainFrameBlockUserPage(){
             mx-0 px-4 py-5 text-xs
             md:mx-5 lg:mx-32 md:px-16 md:py-8 md:text-base
             
-            flex flex-col gap-4
-            md:gap-8
+            flex flex-col gap-4 items-start
+            md:gap-8 md:flex-row
         "> 
-            <Title text={"Science behind the scene"} />
             <TaskManagerSection />
+            <CalendarSection />
         </div>
     )
 }

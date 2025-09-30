@@ -36,7 +36,7 @@ function FooterBlock(){
             flex flex-row justify-between
         ">
             <div className="flex flex-row justify-center items-center gap-2 md:gap-8">
-                <ButtonType01 text="Privacy policy"></ButtonType01>
+                {/* <ButtonType01 text="Privacy policy"></ButtonType01> */}
                 <ButtonType01 text="Terms of service"></ButtonType01>
                 <ButtonType01 text="Contact us"></ButtonType01>
             </div>
