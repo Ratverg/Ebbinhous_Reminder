@@ -1,5 +1,6 @@
 import { useState, useRef, useEffect } from "react"
 import ButtonType01 from "./ButtonType01";
+import { motion, AnimatePresence } from "framer-motion";
 
 function BurgerMenu(){
     const [menuOpen, setMenuStatus] = useState(false);
@@ -10,7 +11,7 @@ function BurgerMenu(){
     
     //handle clicks outside menu (close only when menu not contans e.target)
     const handleClickOutside = (e) =>{
-        //first, check is menuRef and burgerButton is exists (it's could be absent,if clik fast after page load)
+        //first, check is menuRef and burgerButton is exists (it's could be absent,if click fast after page load)
         //then check if burgerButton does not contains e.target
         if (
             menuRef.current &&
@@ -18,7 +19,7 @@ function BurgerMenu(){
             !burgerButtonRef.current.contains(e.target) && 
             !menuRef.current.contains(e.target)
         ) {
-            console.log("clicked outside");
+            // console.log("clicked outside");
             setMenuStatus(false);
         }
         // console.log("clicked");
@@ -61,22 +62,28 @@ function BurgerMenu(){
             >
                 {menuOpen ? "X" : "☰"}
             </button>
-            {/* mobile menu */}
-            {menuOpen && (
-                <nav
-                    ref={menuRef} 
-                    className="
-                        absolute bg-[#ffffff] right-0 top-[4.5rem] w-64
-                        shadow-[0_0_30px_15px_rgba(0,0,0,0.1)]
-                        rounded-2xl
-                        px-10 py-4
-                        flex flex-col items-start gap-4
-                    ">
-                    <ButtonType01 text="Home" onClick={handleMenuButtonClick} active={true} />
-                    <ButtonType01 text="About method" onClick={handleMenuButtonClick} active={false} />
-                    <ButtonType01 text="Sign up" onClick={handleMenuButtonClick} active={false} />
-                </nav>
-            )}
+            {/* mobile menu with opacity animation*/}
+            <AnimatePresence>
+                {menuOpen && (
+                    <motion.nav
+                        ref={menuRef}
+                        initial={{ opacity: 0, y: -20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        exit={{ opacity: 0, y: -20 }}
+                        transition={{ duration: 0.3 }}
+                        className="
+                            absolute bg-white right-0 top-[4.5rem] w-64
+                            shadow-[0_0_30px_15px_rgba(0,0,0,0.1)]
+                            rounded-2xl
+                            px-10 py-4 flex flex-col items-start gap-4
+                        "
+                    >
+                        <ButtonType01 text="Home" onClick={handleMenuButtonClick} active={true} />
+                        <ButtonType01 text="About method" onClick={handleMenuButtonClick} active={false} />
+                        <ButtonType01 text="Sign up" onClick={handleMenuButtonClick} active={false} />
+                    </motion.nav>
+                )}
+            </AnimatePresence>
         </>
     )
 }
