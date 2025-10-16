@@ -4,6 +4,7 @@ import TaskManagerSectionV2 from "./TaskManagerSectionV2";
 import CalendarSection from "./CalendarSection";
 import { useEffect, useState } from "react";
 import InputBlock from "./TestComponent";
+import { NotificationManager } from "./NotificationManager/NotificationManager";
 
 function Title({text}){
     return (
@@ -22,7 +23,7 @@ function getUserNotificationList(UserID){
             color: "#3F98E1 ",
             dates: [new Date(2025, 9, 1),new Date(2025, 10, 22),new Date(2025, 9, 22)],
             repeated: 1,
-            repeatNumbers: 1,
+            repeatNumbers: 2,
             attachment: "/src/assets/icons/ico-timer.png"
         },
         {
@@ -32,7 +33,7 @@ function getUserNotificationList(UserID){
             color: "#ECC94B",
             dates: [new Date(2025, 9, 11),new Date(2025, 10, 12), new Date(2025, 10, 12), new Date(2025, 10, 12), new Date(2025, 10, 12)],
             repeated: 3,
-            repeatNumbers: 1,
+            repeatNumbers: 4,
             attachment: "/src/assets/icons/ico-timer.png"
         },
         {
@@ -51,7 +52,7 @@ function getUserNotificationList(UserID){
 
 function ContentMainFrameBlockUserPage(){
 
-    const [notificationList, updateNotificationList] = useState(getUserNotificationList());
+    const [notificationList, setNotificationList] = useState(getUserNotificationList());
     
 
     return(
@@ -67,7 +68,8 @@ function ContentMainFrameBlockUserPage(){
         "> 
             {/* <InputBlock /> */}
             {/* <TaskManagerSection notificationList={notificationList}  updateNotificationList = {updateNotificationList}/> */}
-            <TaskManagerSectionV2 notificationList={notificationList}  updateNotificationList = {updateNotificationList}/>
+            {/* <TaskManagerSectionV2 notificationList={notificationList}  updateNotificationList = {updateNotificationList}/> */}
+            <NotificationManager notificationList={notificationList}  setNotificationList = {setNotificationList}/>
             {/* <CalendarSection notificationList={notificationList} updateNotificationList = {updateNotificationList} /> */}
             {/* <NotificationList /> */}
         </div>
