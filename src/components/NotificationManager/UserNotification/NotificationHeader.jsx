@@ -1,14 +1,24 @@
 import { ThreePointButtonWithMenu } from "../ui/ThreePointButtonWithMenu";
 import { RadioButtonV1 } from "../ui/RadioButtonV1";
 import { HashTagButton } from "../ui/HashtagButton";
+import { NotificationHashTagSelector } from "./NotificaitonHashTagSelector";
 import { useState } from "react";
 import clsx from "clsx";
 
 
-export function NotificationHeader({notification, selected, setSelected, setNotificationList, editing, setEditing}){
+export function NotificationHeader({
+    notification,
+    selected,
+    setSelected,
+    notificationList,
+    setNotificationList,
+    hashtagList,
+    setHashtagList
+}){
 
     const [title, setTitle] = useState(notification.title);
 
+    //handler that update notification list with "updated notification" as input
     const handleUpdateNotificationList = (updatedNotification) => {
         setNotificationList(prevList =>
             prevList.map(n =>
@@ -16,17 +26,36 @@ export function NotificationHeader({notification, selected, setSelected, setNoti
             )
         );
     };
+    
     return(
         <div className={clsx("flex flex-row w-full justify-between gap-2 items-center relative")}>
             
             {/* radiobutton */}
             <RadioButtonV1 selected={selected} setSelected={setSelected} notification={notification}/>
             
-            {/* hashtag */}
-            <HashTagButton text={notification.hashTag} color={notification.color} />
+            {/* Show hashtag button OR edit hashtag button */}
+            
+            
 
+            {/* hashtag selector */}
+            {notification.editing
+                ?<NotificationHashTagSelector 
+                    {...{
+                        notification,
+                        notificationList,
+                        setNotificationList,
+                        hashtagList,
+                        setHashtagList
+                    }}
+                />
+                : <HashTagButton
+                    text={`#${notification.hashTag}`}
+                    color={notification.color}
+                />
+            }
+           
             {/* notification title */}
-            {editing
+            {notification.editing
                 ?<input
                     type="text"
                     value = {title}
@@ -62,7 +91,7 @@ export function NotificationHeader({notification, selected, setSelected, setNoti
             }
 
             {/* three point button */}
-            <ThreePointButtonWithMenu  {...{editing, setEditing}}/>
+            <ThreePointButtonWithMenu  {...{notification, setNotificationList}}/>
         </div>
     )
 }

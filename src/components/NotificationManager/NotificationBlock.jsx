@@ -2,23 +2,51 @@ import { UserNotification } from "./UserNotification/UserNotification";
 import { ActionButton } from "./ui/ActionButton";
 import { motion, AnimatePresence } from "framer-motion";
 import { generateDates } from "../../utils/DatesUtils";
-import { useState } from "react";
-import { p } from "framer-motion/client";
+import { useEffect, useState } from "react";
 
-// -------Notification block-------
-export function NotificationBlock({notificationList, selected, setSelected, setNotificationList}){
+//-------GET HASHTAG LIST FUNCTION-------
+function getHashtagList(notificationList){
+    const tempList =[{hashtag: "All", color: "#123"}];
+
+    notificationList.forEach((notification)=>{
+        if (!tempList.some((x)=>x.hashtag === notification.hashTag)) {
+            tempList.push({hashtag: notification.hashTag, color: notification.color})
+        }
+    })
+
+    return tempList;
+
+}
+
+
+// -------NOTIFICATION BLOCK-------
+export function NotificationBlock({
+    notificationList,
+    selected,
+    setSelected,
+    setNotificationList
+}) {
+    //current hashtag set to "All" by default
     const [currentHashtag, setCurrentHashtag] = useState("All");
-    const [hashtagList, setHashtagList] = useState([{name: "All", color: "#BB4848"}, {name: "Study", color: "#BB4848"}, {name: "Health", color: "#BB4848"}]);
+    //hashtag list generated from notification list hastag object is {hashtag: "name", color: "#123"}
+    const [hashtagList, setHashtagList] = useState(getHashtagList(notificationList));
 
+    //auto update hashtagList, when notification list changed
+    useEffect(()=>{
+        setHashtagList(getHashtagList(notificationList))
+        
+    },[notificationList])
 
-    //handler to delete selected notification
+    
+
+    //handler - DELETE selected notification
     const handleDeleteSelected = ()=>{
             setNotificationList(
                 notificationList.filter((notification)=> !selected.includes(notification.id))
             )
         }
     
-    //handler to create new notification
+    //handler - CREATE NEW notification
     const handleCreateNewNotification = ()=>{
         //new notification with default parameters
         //todo generate ID for notification
@@ -31,13 +59,14 @@ export function NotificationBlock({notificationList, selected, setSelected, setN
             dates: generateDates(new Date(),3),
             repeatNumbers: 3,
             repeated: 0,
-            attachment: ""
+            attachment: "",
+            editing: true
         }
         setNotificationList((prevList)=>
             [...prevList,newNotification ]    
         )
-    }
 
+    }
 
 
     return(
@@ -47,11 +76,15 @@ export function NotificationBlock({notificationList, selected, setSelected, setN
 
             <p className="font-semibold text-lg">Notification list</p>
             
-            {/* notification filter  buttons */}
+            {/* notifications filter  buttons */}
             <div className="flex flex-row gap-2">
                 {hashtagList.map((hashtag)=>(
-                    <ActionButton text={hashtag.name} color={hashtag.color} onClick={()=>setCurrentHashtag(hashtag.name)} />
-                    // <p>rat</p>
+                    // console.log(hashtag)
+                    <ActionButton
+                        text={hashtag.hashtag}
+                        color={hashtag.color}
+                        onClick={()=>setCurrentHashtag(hashtag.hashtag)}
+                    />
                 ))}
             </div>
 
@@ -59,23 +92,32 @@ export function NotificationBlock({notificationList, selected, setSelected, setN
             <div className="flex flex-col gap-2 w-full">
             <AnimatePresence>
                 {notificationList
-                .filter(
-                    n => currentHashtag === "All" || currentHashtag === n.hashTag
-                )
-                .map((notification) => (
-                    <motion.div
-                    key={notification.id}
-                    layout
-                    initial={{ opacity: 0, height: 0 }}
-                    animate={{ opacity: 1, height: "auto" }}
-                    exit={{ opacity: 0, height: 0 }}
-                    transition={{ duration: 0.3 }}
-                    >
-                    <UserNotification
-                        {...{ notification, selected, setSelected, setNotificationList }}
-                    />
-                    </motion.div>
-                ))}
+                    .filter(
+                        //hashtag === "All" OR notification.hashtag
+                        n => currentHashtag === "All" || currentHashtag === n.hashTag
+                    )
+                    .map((notification) => (
+                        <motion.div
+                        key={notification.id}
+                        layout
+                        initial={{ opacity: 0, height: 0 }}
+                        animate={{ opacity: 1, height: "auto" }}
+                        exit={{ opacity: 0, height: 0 }}
+                        transition={{ duration: 0.3 }}
+                        >
+                        <UserNotification
+                            {...{
+                                notification,
+                                selected,
+                                setSelected,
+                                notificationList,
+                                setNotificationList,
+                                hashtagList,
+                                setHashtagList
+                            }}
+                        />
+                        </motion.div>
+                    ))}
             </AnimatePresence>
             </div>
 

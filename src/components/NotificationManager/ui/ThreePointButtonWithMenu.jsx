@@ -15,11 +15,21 @@ function SmallActionButton({onChange, text, onClick}){
 
 
 // -------Three point button with POP UP menu-------
-export function ThreePointButtonWithMenu ({editing, setEditing}){
+export function ThreePointButtonWithMenu ({notification, setNotificationList }){
     const [menuVisible, setMenuVisible] = useState(false);
     const containerRef = useRef(null);
 
     //Handlers
+
+
+    //update notification list (to toggle editing mode)
+    const handleUpdateNotificationList = (updatedNotification) => {
+        setNotificationList(prevList =>
+            prevList.map(n =>
+                n.id === updatedNotification.id ? updatedNotification : n
+            )
+        );
+    };
 
     //Show menu handler
     const showMenuToggle = ()=>{
@@ -53,11 +63,17 @@ export function ThreePointButtonWithMenu ({editing, setEditing}){
                 ⋮
             </button>
             {menuVisible &&
-                <div className="opacity-95 absolute flex flex-col items-start z-50 bg-[#fff]  bottom-4 right-1 p-2 rounded-md shadow-[0_0_10px_10px_rgba(0,0,0,0.05)]">
+                <div
+                    className="
+                    opacity-95 bg-[#fff]
+                    absolute flex flex-col items-start z-50
+                    bottom-4 right-1 p-2 rounded-md
+                    shadow-[0_0_10px_10px_rgba(0,0,0,0.05)]
+                ">
                     <SmallActionButton text="Deleteeeee" onClick={()=>console.log("hello")} />
-                    {editing
-                        ? <SmallActionButton text="Finish" onClick={()=>setEditing(false)} />
-                        : <SmallActionButton text="Edit" onClick={()=>setEditing(true)} />
+                    {notification.editing
+                        ? <SmallActionButton text="Finish" onClick={()=>handleUpdateNotificationList({...notification, editing:false})} />
+                        : <SmallActionButton text="Edit" onClick={()=>handleUpdateNotificationList({...notification, editing:true})} />
                     }
                 </div>
             }   

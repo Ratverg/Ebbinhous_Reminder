@@ -2,8 +2,7 @@
 import TaskManagerSection from "./TaskManagerSection";
 import TaskManagerSectionV2 from "./TaskManagerSectionV2";
 import CalendarSection from "./CalendarSection";
-import { useEffect, useState } from "react";
-import InputBlock from "./TestComponent";
+import {useState } from "react";
 import { NotificationManager } from "./NotificationManager/NotificationManager";
 
 function Title({text}){
@@ -24,7 +23,8 @@ function getUserNotificationList(UserID){
             dates: [new Date(2025, 9, 1),new Date(2025, 10, 22),new Date(2025, 9, 22)],
             repeated: 1,
             repeatNumbers: 2,
-            attachment: "/src/assets/icons/ico-timer.png"
+            attachment: "/src/assets/icons/ico-timer.png",
+            editing: false
         },
         {
             id: 10002,
@@ -34,7 +34,8 @@ function getUserNotificationList(UserID){
             dates: [new Date(2025, 9, 11),new Date(2025, 10, 12), new Date(2025, 10, 12), new Date(2025, 10, 12), new Date(2025, 10, 12)],
             repeated: 3,
             repeatNumbers: 4,
-            attachment: "/src/assets/icons/ico-timer.png"
+            attachment: "/src/assets/icons/ico-timer.png",
+            editing: false
         },
         {
             id: 10003,
@@ -44,7 +45,8 @@ function getUserNotificationList(UserID){
             dates: [new Date(2025, 9, 12),new Date(2025, 10, 2)],
             repeated: 0,
             repeatNumbers: 1,
-            attachment: "/src/assets/icons/ico-timer.png"
+            attachment: "/src/assets/icons/ico-timer.png",
+            editing: false
         }
         
     ])
