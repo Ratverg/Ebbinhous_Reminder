@@ -1,0 +1,12 @@
+{
+  "compilerOptions": {
+    "baseUrl": ".",
+    "jsx": "react-jsx",
+    "module": "commonjs",
+    "target": "es2020",
+    "allowSyntheticDefaultImports": true,
+    "checkJs": false,
+    "noImplicitAny": false
+  },
+  "exclude": ["node_modules"]
+}
