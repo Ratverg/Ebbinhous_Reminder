@@ -1,22 +1,32 @@
-# Secrets
+# --- Secrets & Environment ---
 .env
-.env.*
+.env.local
+.env.*.local
 
-# Dependencies
-node_modules/
+# --- Frontend (React/Node) ---
+frontend/node_modules/
+frontend/dist/
+frontend/design_figma/
 
-# Production Build
-dist/
-build/
+# --- Backend (Spring Boot / Maven) ---
+backend/target/
+backend/*.jar
+backend/*.war
+backend/.idea/
+backend/*.iml
+backend/.mvn/wrapper/maven-wrapper.jar
 
-# Design Files (PSD/References)
-design_figma/
+# --- Telegram Bot (Python) ---
+telegram_bot/__pycache__/
+telegram_bot/.venv/
+telegram_bot/env/
+telegram_bot/venv/
+telegram_bot/*.pyc
+telegram_bot/.pytest_cache/
 
-# Logs & OS
-*.log
+# --- Database & Docker ---
+database/*.sql
+
+# --- OS Specific ---
 .DS_Store
-.vscode/
-.idea/
-
-# Docker Local Data
-.docker/
+Thumbs.db

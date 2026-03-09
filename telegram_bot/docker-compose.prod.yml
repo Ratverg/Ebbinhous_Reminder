@@ -1,0 +1,23 @@
+version: '3.8'
+services:
+  ebbinghaus-bot:
+    # Имя образа, под которым он улетит в Docker Hub
+    image: ratverg/ebbinghaus-bot:latest
+    # Платформа целевого устройства (Малины)
+    platform: linux/arm64
+    #The name of the container, late we will use it as an adress in virtual net "cloudflare_net"
+    container_name: ebbinghaus-bot
+    build:
+      context: .
+    # ports:
+      # - "0.0.0.0:8000:8000"
+    env_file:
+      - .env
+    # Полезно для работы на Малине: автоперезапуск при сбое
+    restart: always
+    networks:
+      - cloudflare_net
+    
+networks:
+  cloudflare_net:
+    external: true

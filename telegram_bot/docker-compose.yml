@@ -1,0 +1,21 @@
+version: '3.8'
+services:
+  ebbinghaus-bot-x86:
+    # Имя образа, под которым он улетит в Docker Hub
+    image: ratverg/ebbinghaus-bot-x86:latest
+    # Платформа целевого устройства (PC)
+    # platform: linux/arm64 
+    build:
+      context: .
+      # Можно также уточнить платформу внутри секции сборки
+      dockerfile: Dockerfile
+    ports:
+      - "0.0.0.0:8000:8000"
+    env_file:
+      - .env
+    # Полезно для работы на Малине: автоперезапуск при сбое
+    restart: always
+networks:
+  default:
+    external:
+      name: cloudflare_net
