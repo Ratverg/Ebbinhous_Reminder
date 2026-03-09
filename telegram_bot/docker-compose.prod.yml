@@ -1,6 +1,6 @@
 version: '3.8'
 services:
-  ebbinghaus-bot:
+  bot:
     # Имя образа, под которым он улетит в Docker Hub
     image: ratverg/ebbinghaus-bot:latest
     # Платформа целевого устройства (Малины)

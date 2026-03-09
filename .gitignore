@@ -7,6 +7,7 @@
 frontend/node_modules/
 frontend/dist/
 frontend/design_figma/
+frontend/xlam/
 
 # --- Backend (Spring Boot / Maven) ---
 backend/target/
@@ -15,6 +16,7 @@ backend/*.war
 backend/.idea/
 backend/*.iml
 backend/.mvn/wrapper/maven-wrapper.jar
+backend/xlam/
 
 # --- Telegram Bot (Python) ---
 telegram_bot/__pycache__/
@@ -23,9 +25,11 @@ telegram_bot/env/
 telegram_bot/venv/
 telegram_bot/*.pyc
 telegram_bot/.pytest_cache/
+telegram_bot/xlam/
 
 # --- Database & Docker ---
 database/*.sql
+database/xlam/
 
 # --- OS Specific ---
 .DS_Store
